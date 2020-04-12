@@ -46,4 +46,4 @@ func raycast_look_at(vec):
 func get_pickable_item_scene():
 	return null
 	#use on other weapons:
-	#return pickupable_item_path
+	#return pickable_item

@@ -3,9 +3,8 @@ extends KinematicBody2D
 #TODO replace with var pickup_item = preload("res://scenes/m_sword.tscn")
 var pickup_item = preload("res://scenes/m_sword.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 func pickup():
@@ -24,6 +23,3 @@ func add_item(item):
 func take_damage(dmg):
 	#play sound
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

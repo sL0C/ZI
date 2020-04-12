@@ -12,11 +12,4 @@ func _physics_process(delta):
 		attack = false
 		get_parent().attacking()
 	pass
-	
-	
-#func is_colliding():
-#	get_parent().attacking()
-#	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+

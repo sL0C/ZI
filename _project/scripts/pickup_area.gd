@@ -12,14 +12,14 @@ func set_direction(mouse_pos,start_pos):
 	
 	
 func execute_postion():
-	#print("executing")
 	position = position + (direction * 15)
+	pass
 
 
 func _ready():
 	timer.connect("timeout", self, "timeout")
 	timer.start()
-	pass # Replace with function body.
+	pass
 
 
 func timeout():
@@ -33,4 +33,4 @@ func _on_pickup_area_body_entered(body):
 	if body.is_in_group("pickup"):
 		emit_signal("_on_pickup_area_body_entered", body)
 		return body
-	pass # Replace with function body.
+	pass

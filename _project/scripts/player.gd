@@ -106,16 +106,6 @@ func _physics_process(delta):
 			add_child(p_a)
 	#!no else lerp because standing should be instant also bc is weird if multiple ifs need to be activated at the same time
 	#move_vec = move_vec.normalized() no normalization to enable diagonal speedrunning
-	#if move_vec == Vector2(0,0):
-	#if is_zero_vector(move_vec):
-	#	print("stop step-Timer")
-	#	if !step_Timer.is_stopped():
-	#		step_Timer.stop
-	#else:
-	#	if step_Timer.is_stopped():
-	#		step_Timer.start()
-	#print(Vector2(0,0))
-	#print(move_vec)
 	if friction_x:#if step timer is running stop
 		move_vec.x = lerp(move_vec.x, 0, 0.2)
 	if friction_y:
@@ -147,26 +137,10 @@ func timeout_p_a():
 
 
 func pickup(body):
-	print(body)
-	#for pickup in pickups:
-	#	print("overlapping")
-	#if pickup.is_in_group("pickup"):
-	print("picking up")
 	var old_weapon = $weapon_handler.add_item(body.pickup())
-	#if old_weapon.instance().identifier != "fists":
-	#	body.add_item(old_weapon)
-	#	body = null
 	p_a.queue_free()
 	
 	
-func is_zero_vector(vec):
-	print(vec)
-	if vec.x == 0 && vec.x == -0:
-		if vec.y == 0 && vec.y == -0:
-			print(true)
-			return true
-			
-			
 func move(vec):
 	move_and_slide(vec)
 	pass

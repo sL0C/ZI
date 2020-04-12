@@ -1,7 +1,5 @@
 extends Node2D
 
-onready var raycast = $RayCast2D
-onready var reload_Timer = $Timer
 var full_Ammunition = 1
 var damage = 150
 var ammunition = 1
@@ -9,7 +7,9 @@ var identifier = "stone"
 var lastLookedAtVector = Vector2()
 var can_shoot_again = false
 var can_shoot_again_timer
-var pickable_item_path = load("res://scenes/m_stone_pickable.tscn")
+var pickable_item = load("res://scenes/m_stone_pickable.tscn")
+onready var raycast = $RayCast2D
+onready var reload_Timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,4 +65,5 @@ func reload():
 
 
 func get_pickable_item_scene():
+	return pickable_item
 	pass

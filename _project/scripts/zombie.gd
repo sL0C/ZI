@@ -12,7 +12,6 @@ var timer
 var x = 0
 var y = 1
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("walking_speed")
 	$AnimationPlayer.connect("animation_finished", self, "animation_player_finished")
@@ -23,7 +22,7 @@ func _ready():
 	print("start")
 	print(!timer.is_stopped())
 	direction = set_random_direction()
-	pass # Replace with function body.
+	pass
 	
 	
 func animation_player_finished(animation):

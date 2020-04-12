@@ -1,7 +1,6 @@
 extends Node
 
-onready var raycast = $RayCast2D
-onready var reload_Timer = $Timer
+
 var full_Ammunition = 12
 var damage = 200
 var ammunition = 6
@@ -10,17 +9,16 @@ var identifier = "pistol"
 var lastLookedAtVector = Vector2()
 var time_until_ready = 1
 var ready_Timer
-onready var bullets_when_ready = load_ready_bullets()
 var ready = false
 var pickable_item = load("res://scenes/r_pistol_pickup.tscn")
+onready var bullets_when_ready = load_ready_bullets()
+onready var raycast = $RayCast2D
+onready var reload_Timer = $Timer
 
 # Called when the node enters the scene tree for the first time.
 func load_ready_bullets():
 	var n = get_parent().get_weapon_n_by_identifier(identifier)
 	return get_parent().last_Ammunition[n]
-	#for weapon in get_parent().weapons:
-	#	if weapon != null:
-	#		if weapon.instance().identifier == identifier:
 	pass
 	
 	
@@ -32,14 +30,10 @@ func _ready():
 	ready_Timer.one_shot = true
 	add_child(ready_Timer)
 	ready_Timer.start(time_until_ready)
-	pass # Replace with function body.
+	pass
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _on_ready_timer_timeout():
-	print("bullets when ready ", bullets_when_ready)
 	ammunition = bullets_when_ready
 	ready = true
 	pass

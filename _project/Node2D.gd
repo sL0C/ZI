@@ -2,12 +2,11 @@ extends Area2D
 
 var direction
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	print("node2d")
 	set_direction()
 	execute_postion()
-	pass # Replace with function body.
+	pass
 
 
 func set_direction():

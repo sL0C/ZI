@@ -1,18 +1,17 @@
 extends KinematicBody2D
 
 # Declare member variables here. Examples:
+export var speed = 100
 var health = 150
 var target = null
 var target_Position = null
-onready var direction
-export var speed = 100
 var damage = 50
-onready var raycast = $RayCast2D
 var timer
 var x = 0
 var y = 1
+onready var direction
+onready var raycast = $RayCast2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimationPlayer.play("walking_speed")
 	$AnimationPlayer.connect("animation_finished", self, "animation_player_finished")
@@ -20,7 +19,7 @@ func _ready():
 	add_child(timer)
 	timer.start(5)
 	direction = set_random_direction()
-	pass # Replace with function body.
+	pass
 	
 	
 func animation_player_finished(animation):
@@ -46,9 +45,6 @@ func set_random_direction():
 		return Vector2(x,y)
 		
 		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func check_if_target_is_in_range():
 	var bodies = $listening_area.get_overlapping_bodies()
 	for body in bodies:
@@ -87,9 +83,8 @@ func _physics_process(delta):
 		for body in bodies:
 			if body == target:
 				direction = position.direction_to(target.position)
-				if $AnimationPlayer.is_playing():
-					if !$AnimationPlayer.current_animation == "attacking":
-						$AnimationPlayer.play("charge")
+				if $AnimationPlayer.is_playing() and !$AnimationPlayer.current_animation == "attacking":
+					$AnimationPlayer.play("charge")
 				raycast_look_at_and_collide(direction)
 				move_and_collide(direction * speed * delta)
 				return
@@ -138,7 +133,6 @@ func _on_listening_area_area_entered(area):
 			for body in bodies:
 				if body.is_in_group("player"):
 					target = body
-					print(target)
 					return
 			target_Position = area.get_cause_Object().position
-	pass # Replace with function body.
+	pass

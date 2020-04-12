@@ -23,6 +23,3 @@ func add_item(item):
 func take_damage(dmg):
 	#play sound
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

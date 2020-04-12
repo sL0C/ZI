@@ -29,10 +29,6 @@ func switch_weapon(n):
 	#Cancel if switching to empty slot
 	if weapons[n] == null:
 		return
-	#var number = get_weapon_n_by_identifier(get_child(0).identifier)
-	#if weapons[number].instance().identifier != get_child(0).identifier:
-	#if number == n:
-	#	return#return if switching to the equiped gun 
 	#Cancel if switching to current weapon 
 	if current_Weapon == n:
 		return	
@@ -46,12 +42,6 @@ func switch_weapon(n):
 	add_child(weapons[current_Weapon].instance())
 	raycast_look_at(looked_at_vector)
 	get_child(0).ammunition = last_Ammunition[current_Weapon]
-	#if weapons[n].instance().identifier == get_child(0).identifier:
-	#	print(true)
-	#	last_Ammunition[n] = get_child(0).ammunition
-	print("lastamu: ", last_Ammunition)
-	#get_child(0).bullets_when_ready = last_Ammunition
-	#print("ttt ",get_child(0).bullets_when_ready)
 	print(get_child(0).ammunition)
 	pass
 	

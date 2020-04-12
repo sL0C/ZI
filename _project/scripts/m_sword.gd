@@ -11,14 +11,13 @@ var can_shoot_again = false
 var can_shoot_again_timer
 var pickable_item = load("res://scenes/m_sword_pickable.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	can_shoot_again_timer = $Timer
 	can_shoot_again_timer.one_shot = true
 	can_shoot_again_timer.connect("timeout",self,"_on_can_shoot_again_timer_timeout")
 	if can_shoot_again_timer.is_stopped():
 		can_shoot_again_timer.start(0.2)
-	pass # Replace with function body.
+	pass
 	
 	
 func _on_can_shoot_again_timer_timeout():
@@ -49,14 +48,6 @@ func shoot():
 			if !(each.is_in_group("player") || each.is_in_group("friendly npc")):
 				each.take_damage(damage)
 		collisionshape.disabled = true
-		#FROM STONE.GD
-		#if raycast.is_colliding():
-		#	print("is colliding")
-		#	var collider = raycast.get_collider()
-		#	print(collider)
-		#	if !(collider.is_in_group("player") || collider.is_in_group("friendly npc")):
-		#		collider.take_damage(damage)
-		#		print("coll take damage")
 		#play sound
 		#start screenshake
 		if can_shoot_again_timer.is_stopped():
