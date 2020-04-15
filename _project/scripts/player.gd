@@ -1,18 +1,44 @@
 extends KinematicBody2D
 
+export var multiplier_animation = 0
 const MAX_SPEED = 250
 const ACCELERATION = 50
 var move_vec = Vector2()
 var friction_x = false
 var friction_y = false
 var step_Timer
-onready var step = preload("res://scenes/step_sound.tscn")
 var health = 200
 var standing = true
 var standing_locked = false
 var stand_Timer
 var pickup_area = load("res://scenes/pickup_area.tscn")
 var p_a
+onready var step = preload("res://scenes/step_sound.tscn")
+
+#For new launching attack
+func get_hitbox():
+	$CollisionShape2D.disabled = true
+	$hitbox/CollisionShape2D.disabled = false
+	return $hitbox
+	#spawn hitbox
+	pass
+func set_collision():
+	$CollisionShape2D.disabled = false
+	$hitbox/CollisionShape2D.disabled = true
+	return $hitbox
+	#spawn hitbox
+	pass
+
+func move_in_mouse_direction():
+	print("moving_in_mouse_dir")
+	var mouse_pos = get_global_mouse_position()
+	var start_pos = global_position
+	var direction = (mouse_pos - start_pos).normalized()
+	var move_vec = direction * multiplier_animation * $weapon_handler.get_multiplier()
+	move_and_collide(move_vec)
+	start_pos = Vector2(0,0)
+	direction = Vector2(0,0)
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

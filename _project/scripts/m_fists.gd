@@ -15,6 +15,15 @@ var fist = load("res://scenes/fist.tscn")
 func _ready():
 	pass
 
+func spawn_attack_hitbox():
+	var global_mouse_pos = get_global_mouse_position()
+	var f = fist.instance()
+	#f.look_at(global_mouse_pos)
+	f.scale= Vector2(10,1)
+	f.set_direction(global_mouse_pos, get_parent().global_position)
+	add_child(f)
+	f.execute_postion()
+	return f
 
 func shoot():
 	print("shoot")

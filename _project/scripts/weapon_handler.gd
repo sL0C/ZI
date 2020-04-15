@@ -71,9 +71,55 @@ func add_item(item):
 
 
 func shoot():
+	#New Implementation of fighting melee
+	#charge in direction of attack
+	#move in direction with high speed
+	#compare targets hit by weapons hitbox to targets hit with player hitbox(provided by get_parent())
+	#deal damage to those hit, take from those that hit you
+	#to deal with problem of standing still in time of fighting
+	if true:
+		#spawn hitbox -> add hit objects to hit array
+		#add hit characters to array
+		#if there has been a hit in hitbox, ignore hit characters
+		#deal damage (to all hit, to self by hit character if nobody was hit by attackbox)
+		#returns spawned hitbox
+		var attack_hitbox = get_child(0).spawn_attack_hitbox()
+		var player_hitbox = get_parent().get_hitbox()
+		attack_hitbox.connect("_on_body_entered", self, "_on_body_entered_attack_hitbox")
+		player_hitbox.connect("_on_body_entered", self, "_on_body_entered_player_hitbox")
+		get_parent().get_node("AnimationPlayer").play("attack")
+		get_parent().move_in_mouse_direction()
+		#disable attacking while in move
+		return
 	get_child(0).shoot()
 	pass
 
+func get_multiplier():
+	#return get_child(0).multiplier
+	return 1
+	pass
+
+func resolve_attack():
+	get_parent().set_collision()
+	#enable attacking
+	if attack_hitbox_collisions.size() < 1:
+		#deal damage to player
+		return
+	else:
+		for hitbox in attack_hitbox_collisions:
+			return
+			#hitbox.deal_damage(get_child(0).get_damage)
+	pass
+	
+var attack_hitbox_collisions = []
+func _on_body_entered_attack_hitbox(body):
+	attack_hitbox_collisions.append(body)
+	pass
+	
+var player_hitbox_collisions = []
+func _on_body_entered_player_hitbox(body):
+	player_hitbox_collisions.append(body)
+	pass
 
 func reload():
 	get_child(0).reload()

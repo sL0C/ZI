@@ -21,6 +21,7 @@ func timeout():
 
 func set_direction(mouse_pos,start_pos):
 	direction = (mouse_pos - start_pos).normalized()
+	rotate(atan2(direction.y, direction.x))
 	pass
 
 
